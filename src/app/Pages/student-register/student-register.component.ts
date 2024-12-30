@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NzButtonModule } from 'ng-zorro-antd/button';
+import { RouterLink } from '@angular/router';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 @Component({
-  selector: 'app-root',
+  selector: 'app-student-register',
   standalone: true,
-  imports: [RouterOutlet,NzStepsModule,NzButtonModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [NzStepsModule,RouterLink],
+  templateUrl: './student-register.component.html',
+  styleUrls: ['../../Core/Shared/CSS/Stepper.scss' ,'./student-register.component.scss']
 })
-export class AppComponent {
-  title = 'Pickup';
+export class StudentRegisterComponent {
   current = 0;
+  stepone:boolean =true;
+
+  stepTwo:boolean =false;
+
+  stepThree:boolean =false;
+
 
   index = 'First-content';
 
@@ -32,15 +36,21 @@ export class AppComponent {
   changeContent(): void {
     switch (this.current) {
       case 0: {
-        this.index = 'First-content';
+        this.stepone=true;
+
         break;
       }
       case 1: {
-        this.index = 'Second-content';
+        this.stepTwo= true;
+        this.stepone=false;
+    
         break;
       }
       case 2: {
-        this.index = 'third-content';
+        this.stepTwo= false;
+        this.stepone=false;    
+        this.stepThree=true  
+        
         break;
       }
       default: {
